@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Workspace\\Assesment\\WebApplication1\\WebApplication1\\WebApplication1.csproj": {}
+    "C:\\Workspace\\Assesmentgit\\WebApplication1\\WebApplication1.csproj": {}
   },
   "projects": {
-    "C:\\Workspace\\Assesment\\WebApplication1\\WebApplication1\\WebApplication1.csproj": {
+    "C:\\Workspace\\Assesmentgit\\WebApplication1\\WebApplication1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Workspace\\Assesment\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
+        "projectUniqueName": "C:\\Workspace\\Assesmentgit\\WebApplication1\\WebApplication1.csproj",
         "projectName": "WebApplication1",
-        "projectPath": "C:\\Workspace\\Assesment\\WebApplication1\\WebApplication1\\WebApplication1.csproj",
+        "projectPath": "C:\\Workspace\\Assesmentgit\\WebApplication1\\WebApplication1.csproj",
         "packagesPath": "C:\\Users\\AMBRESH\\.nuget\\packages\\",
-        "outputPath": "C:\\Workspace\\Assesment\\WebApplication1\\WebApplication1\\obj\\",
+        "outputPath": "C:\\Workspace\\Assesmentgit\\WebApplication1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\AMBRESH\\AppData\\Roaming\\NuGet\\NuGet.Config",

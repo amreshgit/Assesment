@@ -30,5 +30,31 @@ namespace WebApplication1.Controllers
             var TotalPrice = await BooksDAL.GetTotalPrice();
             return Ok(new { TotalPrice = TotalPrice });
         }
+        [Route("MLAFormat"), HttpGet]
+        public async Task<IActionResult> MLAFormat()
+        {
+            var books = await BooksDAL.GetMLAFormat();
+            List<string> formats = new List<string>();
+            foreach(var book in books)
+            {
+                string format = $"{book.AuthorFirstName} {book.AuthorLastName} {book.TitleOfTheSource} {book.TitleOfTheContainer}" +
+                    $" {book.Publisher} {book.PublicationDate} {book.Location}";
+                formats.Add(format);
+            }
+            return Ok(formats);
+        }
+        [Route("ChicagoFormat"), HttpGet]
+        public async Task<IActionResult> ChicagoFormat()
+        {
+            var books = await BooksDAL.GetChicagoFormat();
+            List<string> formats = new List<string>();
+            foreach (var book in books)
+            {
+                string format = $"{book.AuthorLastName}, {book.AuthorFirstName} {book.Title}. {book.Volume}," +
+                    $" {book.Issue} ({book.PublicationDate}):{book.Location}. {book.DOI}.";
+                formats.Add(format);
+            }
+            return Ok(formats);
+        }
     }
 }

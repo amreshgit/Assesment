@@ -1,6 +1,6 @@
 USE [master]
 GO
-/****** Object:  Database [Assesment]    Script Date: 23-12-2022 13:43:07 ******/
+/****** Object:  Database [Assesment]    Script Date: 30-12-2022 12:34:40 ******/
 CREATE DATABASE [Assesment]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -82,7 +82,7 @@ ALTER DATABASE [Assesment] SET QUERY_STORE = OFF
 GO
 USE [Assesment]
 GO
-/****** Object:  Table [dbo].[Book]    Script Date: 23-12-2022 13:43:07 ******/
+/****** Object:  Table [dbo].[Book]    Script Date: 30-12-2022 12:34:40 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -94,27 +94,20 @@ CREATE TABLE [dbo].[Book](
 	[AuthorLastName] [nvarchar](50) NULL,
 	[AuthorFirstName] [nvarchar](50) NULL,
 	[Price] [decimal](18, 0) NULL,
+	[TitleOfTheSource] [nvarchar](100) NULL,
+	[TitleOfTheContainer] [nvarchar](100) NULL,
+	[PublicationDate] [varchar](50) NULL,
+	[Location] [varchar](50) NULL,
+	[Volume] [varchar](50) NULL,
+	[Issue] [varchar](50) NULL,
+	[DOI] [varchar](100) NULL,
  CONSTRAINT [PK_Book] PRIMARY KEY CLUSTERED 
 (
 	[ID] ASC
 )WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 GO
-SET IDENTITY_INSERT [dbo].[Book] ON 
-GO
-INSERT [dbo].[Book] ([ID], [Publisher], [Title], [AuthorLastName], [AuthorFirstName], [Price]) VALUES (1, N'PHI', N'Clean Code', N'Robert C.', N'Martin', CAST(100 AS Decimal(18, 0)))
-GO
-INSERT [dbo].[Book] ([ID], [Publisher], [Title], [AuthorLastName], [AuthorFirstName], [Price]) VALUES (2, N'Addison Wesley', N'Design Patterns', N'Fowler', N'Martin', CAST(145 AS Decimal(18, 0)))
-GO
-INSERT [dbo].[Book] ([ID], [Publisher], [Title], [AuthorLastName], [AuthorFirstName], [Price]) VALUES (3, N'Addison Wesley', N'Patterns of Enterprise Application Architecture', N'Gamma', N'Erich', CAST(200 AS Decimal(18, 0)))
-GO
-INSERT [dbo].[Book] ([ID], [Publisher], [Title], [AuthorLastName], [AuthorFirstName], [Price]) VALUES (4, N'Pearson Addison-Wesley Professional', N'Enterprise Integration Patterns', N'Gregor', N'Hohpe', CAST(3232 AS Decimal(18, 0)))
-GO
-INSERT [dbo].[Book] ([ID], [Publisher], [Title], [AuthorLastName], [AuthorFirstName], [Price]) VALUES (5, N'Microsoft Press US', N'Code Complete', N'Mcconnell', N'Steve', CAST(543 AS Decimal(18, 0)))
-GO
-SET IDENTITY_INSERT [dbo].[Book] OFF
-GO
-/****** Object:  StoredProcedure [dbo].[GetBooks_OrderOnAuthor]    Script Date: 23-12-2022 13:43:07 ******/
+/****** Object:  StoredProcedure [dbo].[GetBooks_OrderOnAuthor]    Script Date: 30-12-2022 12:34:40 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -135,7 +128,7 @@ BEGIN
 		Select Publisher,Title,AuthorLastName,AuthorFirstName,Price from Book order by AuthorLastName,AuthorFirstName,Title
 END
 GO
-/****** Object:  StoredProcedure [dbo].[GetBooks_OrderOnPublisher]    Script Date: 23-12-2022 13:43:07 ******/
+/****** Object:  StoredProcedure [dbo].[GetBooks_OrderOnPublisher]    Script Date: 30-12-2022 12:34:40 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -155,6 +148,29 @@ BEGIN
 	SET NOCOUNT ON;
 		Select Publisher,Title,AuthorLastName,AuthorFirstName,Price from Book order by Publisher,AuthorLastName,AuthorFirstName,Title
 
+END
+GO
+/****** Object:  StoredProcedure [dbo].[GetChicagoFormat]    Script Date: 30-12-2022 12:34:40 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROC [dbo].[GetChicagoFormat]
+AS
+BEGIN
+SELECT ID,Publisher,Title,AuthorLastName,AuthorFirstName,TitleOfTheSource,TitleOfTheContainer,PublicationDate,Location,Price,volume,Issue,DOI from Book
+END
+GO
+/****** Object:  StoredProcedure [dbo].[GetMLAFormat]    Script Date: 30-12-2022 12:34:40 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+--select * from Book
+CREATE PROC [dbo].[GetMLAFormat]
+AS
+BEGIN
+SELECT ID,Publisher,Title,AuthorLastName,AuthorFirstName,TitleOfTheSource,TitleOfTheContainer,PublicationDate,Location,Price from Book
 END
 GO
 USE [master]

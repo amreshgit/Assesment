@@ -48,6 +48,7 @@ namespace WebApplication1
         }
         public async Task<decimal> GetTotalPrice()
         {
+            
             decimal TotalPrice = 0;
             try
             {
@@ -61,6 +62,40 @@ namespace WebApplication1
             {
             }
             return TotalPrice;
+        }
+        public async Task<ICollection<Book>> GetMLAFormat()
+        {
+            List<Book> lstbooks = new List<Book>();
+            try
+            {
+                using (var connection = new SqlConnection(_connectionString))
+                {
+                    var procedure = "GetMLAFormat";
+                    var books = await connection.QueryAsync<Book>(procedure, commandType: CommandType.StoredProcedure);
+                    return lstbooks = books.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            return lstbooks;
+        }
+        public async Task<ICollection<Book>> GetChicagoFormat()
+        {
+            List<Book> lstbooks = new List<Book>();
+            try
+            {
+                using (var connection = new SqlConnection(_connectionString))
+                {
+                    var procedure = "GetChicagoFormat";
+                    var books = await connection.QueryAsync<Book>(procedure, commandType: CommandType.StoredProcedure);
+                    return lstbooks = books.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+            }
+            return lstbooks;
         }
     }
 }
